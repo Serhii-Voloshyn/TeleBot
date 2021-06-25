@@ -1,0 +1,23 @@
+DEBUG:root::(
+DEBUG:root:(:
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "POST /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/sendMessage?chat_id=585920089&text=%3A%28 HTTP/1.1" 200 279
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564717&timeout=20 HTTP/1.1" 200 354
+DEBUG:root::)
+DEBUG:root:):
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "POST /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/sendMessage?chat_id=585920089&text=%3A%29 HTTP/1.1" 200 280
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564718&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564718&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564718&timeout=20 HTTP/1.1" 200 356
+DEBUG:root:stop
+DEBUG:root:pots
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "POST /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/sendMessage?chat_id=585920089&text=stop HTTP/1.1" 200 282
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564719&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564719&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564719&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564719&timeout=20 HTTP/1.1" 200 23
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "GET /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/getUpdates?offset=204564719&timeout=20 HTTP/1.1" 200 356
+DEBUG:root:wtop
+DEBUG:root:potw
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG:urllib3.connectionpool:https://api.telegram.org:443 "POST /bot1863123470:AAH_d17jL1UUeSs60VPgQ12ktp55CluUi1s/sendMessage?chat_id=585920089&text=wtop HTTP/1.1" 200 282
