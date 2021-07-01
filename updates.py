@@ -96,7 +96,6 @@ def update_exams():
 
 def main():
 
-
     update_groups()
     #update_schedule()
     #update_exams()
@@ -104,4 +103,5 @@ def main():
     print(__name__)
 
 
-main()
+if __name__ == 'main':
+    main()
