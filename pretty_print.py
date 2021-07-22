@@ -1,15 +1,53 @@
 from bs4 import BeautifulSoup
 from lesson import Lesson
 
+from collections import Iterable
 
-def get_lesson_settings(tag):
+
+
+def flatten(lis):
+     for item in lis:
+         if isinstance(item, Iterable) and not isinstance(item, str):
+             for x in flatten(item):
+                 yield x
+         else:        
+             yield item
+
+def get_lessons_urls(tag):
+    return [a for a in tag.find_all('a', href = True)]
+
+
+def get_lessons_numbers(tag):
+
+    lessons_numbers = [i.getText() for i in tag.find_all('h3')]
+    lessons_counter = [len(i.findChildren('div', recursive = False)) for i in tag.find_all('div', class_ = 'stud_schedule')]
+
+    lessons_numbers = list(''.join([i * j for i, j in zip(lessons_numbers, lessons_counter)]))
+
+    #print([i for i in tag.find_all('h3') for _ in tag.find_all('div', class_ = 'stud_schedule')])
+    return lessons_numbers
+
+
+def get_lessons_settings(tag):
     
-    settings = [i.get('id') for i in tag.find_all('div', class_ = 'week_color')]
-    print('=======')
-    print(settings)
-    print('=======')
+    translated = {'group_full': 'Для всіх', 
+                    'group_chys': 'Чисельник', 
+                    'group_znam': 'Знаменник', 
+                    'sub_1_full': 'І підгрупа',
+                    'sub_2_full': 'ІІ підгрупа',
+                    'sub_1_chys': 'І підгрупа, чисельник',
+                    'sub_1_znam': 'І підгрупа, знаменник',
+                    'sub_2_chys': 'ІІ підгрупа, чисельник',
+                    'sub_2_znam': 'ІІ підгрупа, знаменник'}
 
-    return 'FULL'
+    settings = [[j.get('id') for j in i.findChildren('div', recursive = False)] if isinstance(i.findChildren('div', recursive = False), list) \
+        else (i.findChildren('div', recursive = False)).get('id')
+        for i in tag.find_all('div', class_ = 'stud_schedule')]
+
+    settings = list(flatten(settings))
+    settings = [translated[i] for i in settings]
+
+    return settings
 
 def list_to_lesson(data):
     """Convert list to Lesson object
@@ -27,27 +65,32 @@ def form_lessons(tag):
     """Forms lesson for printing
     tag - Tag, from schedule site
     """
-    #Form urls which are in tag
-    urls = [a for a in tag.find_all('a', href = True)]
+    
     #Needed to itarate through urls. Not all lessons have URL
     url_counter = 0
 
+    #Form urls which are in tag
+    urls = get_lessons_urls(tag)
     #Because lesson number is ouside of tag, that contains all lessons in specific day
-    lessons_num = [i.getText() for i in tag.find_all('h3')]
+    lessons_num = get_lessons_numbers(tag)
+    lessons_settings = get_lessons_settings(tag)
+
     #lessons is a list of Lesson objects
     lessons = []
 
     #Itarate through all lessons in tag and lesson_num
-    for i, j in zip(tag.find_all('div', class_ = 'group_content'), lessons_num):
+
+    for i, j, k in zip(tag.find_all('div', class_ = 'group_content'), lessons_num, lessons_settings):
             
             #Current lesson in list from, which is forming
             current = (pretty_lessons((i.get_text(';')).split(';')))
 
-            lesson_settings = get_lesson_settings(tag)
+            lesson_settings = k
 
             #Lesson number insert first
             current.insert(0, lesson_settings)
             current.insert(0, j)
+
 
             #If contain URL
             if current.count('URL онлайн заняття') > 0:
@@ -59,6 +102,7 @@ def form_lessons(tag):
                         #Replace 'URL онлайн заняття' to <a></a> tag. Because telebot can print it easily
                         current[n] = urls[url_counter]
                         url_counter += 1
+
             lessons.append(list_to_lesson(current))
 
     return lessons
@@ -82,7 +126,6 @@ def pretty_schedule_day(tag):
     days = [tag.find('div', class_ = 'view-grouping-header').getText()]
 
     result = ''
-
     for k in days:
 
         result = '=========================\n'
@@ -93,8 +136,8 @@ def pretty_schedule_day(tag):
             result += str(i) + '\n'
             
         result += '========================='
-        
     return result
+
 
 def pretty_schedule_week(soup):
     
@@ -110,4 +153,5 @@ def pretty_schedule_for_group(group):
 
         return pretty_schedule_week(soup)
 
-pretty_schedule_for_group('СА-32')
+for i in pretty_schedule_for_group('СА-32'):
+    print(i)

@@ -21,8 +21,10 @@ class Lesson:
         """Overloading for easy printing. Print all attributes separated by \\n
         """
         #Required fields
-        result = "Харки: " + self.settings + '\n'
-        result += "№ " + str(self.num) + '\n'
+
+        result = "№ " + str(self.num) + '\n'
+        result += "Харки: " + self.settings + '\n'
+        
         result += "Назва предмету: " + self.name + '\n'
         result += "Викладач: " + self.teacher + '\n'
 
