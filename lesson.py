@@ -23,7 +23,7 @@ class Lesson:
         #Required fields
 
         result = "№ " + str(self.num) + '\n'
-        result += "Харки: " + self.settings + '\n'
+        result += "Група: " + self.settings + '\n'
         
         result += "Назва предмету: " + self.name + '\n'
         result += "Викладач: " + self.teacher + '\n'
@@ -33,7 +33,6 @@ class Lesson:
 
         #If location isn't in teacher field
         if self.location != None:
-
             #If location contain list of URLS. For NULP sake, that's why
             if isinstance(self.location, list):
                 #Add all urls as html <a></a>
